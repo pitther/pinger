@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 if (!process.env.MASTER_URL) {
     throw new Error('MASTER_URL is not defined in the environment');
 }

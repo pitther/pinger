@@ -7,7 +7,10 @@ const normalizeLogs = (logs) => {
         const {label, status, timestamp} = log;
         const slave = result.find(slave => slave.label === label);
         if (slave) {
-            if (slave.logs[slave.logs.length - 1].status === status) continue;
+            if (slave.logs[slave.logs.length - 1].status === status){
+                slave.logs[slave.logs.length - 1].timestamp = timestamp;
+                continue;
+            }
             slave.logs.push({status, timestamp});
         } else {
             result.push({

@@ -3,8 +3,9 @@ import {TELEGRAM_ADMIN_IDS, TELEGRAM_API_TOKEN, TRIGGER_TIME_S} from "../util/co
 import {getTimestampString} from "../util/util.js";
 
 export class Notifier {
-    constructor(slavesTimestamps) {
+    constructor(slavesTimestamps, db) {
         this.slavesTimestamps = slavesTimestamps;
+        this.db = db;
 
         this.whiteList = TELEGRAM_ADMIN_IDS;
         this.bot = new TelegramBot(TELEGRAM_API_TOKEN, {polling: true});
@@ -97,6 +98,7 @@ export class Notifier {
         const {lastAlive, lastDead} = currentSlave;
 
         if (currentSlave.isAlive === isAlive) return;
+        await this.db.writeSlaveLog(label, isAlive);
 
         console.log(`${getTimestampString()}, ${label}:${isAlive}`);
 

@@ -18,3 +18,5 @@ export const TRIGGER_TIME_S = process.env.TRIGGER_TIME_S || 120;
 export const SLAVE_SECRET = process.env.SLAVE_SECRET;
 export const TELEGRAM_API_TOKEN = process.env.TELEGRAM_API_TOKEN;
 export const TELEGRAM_ADMIN_IDS = process.env.TELEGRAM_ADMIN_IDS.split(' ');
+export const MONGODB_URI = process.env.MONGODB_URI;
+export const LOGS_SECRET = process.env.LOGS_SECRET;
